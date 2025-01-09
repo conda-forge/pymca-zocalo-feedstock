@@ -10,24 +10,26 @@ source:
   sha256: 27100359d8a3e3c6ec8d0bc582116deaccb1ffe467388976284c603b94a04488
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
     - pip
-    - python >=3
+    - python {{ python_min }}
     - setuptools
   run:
     - pymca
-    - python >=3
+    - python >={{ python_min }}
     - setuptools
     - workflows >=1.7
     - zocalo
     - xraylib
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - pymca_zocalo
 
